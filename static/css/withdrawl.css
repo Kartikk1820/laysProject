@@ -92,3 +92,6 @@ body {
 .btn-confirm-withdrawal:hover {
   background-color: #0056b3;
 }
+form{
+  width: 80%;
+}
