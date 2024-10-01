@@ -113,16 +113,6 @@
     <div class="container mt-5">
       <h2>Payment Gateway</h2>
 
-      <!-- Display Flash Messages -->
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %}
-      <div class="mb-3">
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-      </div>
-      {% endif %} {% endwith %}
-
       <div class="mb-3">
         <strong>Amount to Recharge:</strong> ₹{{ request.args.get('amount') }}
       </div>
