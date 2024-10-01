@@ -42,21 +42,21 @@
   width: 60%;
   border-radius: 15pc;
   background-color: rgba(242, 242, 242, 1);
-  color: rgba(187, 187, 196, 1);
+  color: rgb(223, 223, 227);
 }
 
 /* Active button styles */
 .active-btn {
-  background-color: #fff !important;
+  background-color: rgba(203, 21, 23, 1) !important;
   /* Force the active background color */
-  color: rgb(64, 63, 63) !important;
+  color: #eae7e7 !important;
   /* Force the active text color */
 }
 
 /* Ensure the inactive buttons have the default styles */
 .loginBtn,
 .registerBtn {
-  width: 49.7%;
+  width: 49%;
   border-radius: 20px;
   color: rgba(187, 187, 196, 1);
   background-color: rgba(242, 242, 242, 1);
@@ -73,6 +73,10 @@
 /* Input fields */
 .input-group {
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Input fields with bottom border only */
@@ -127,4 +131,9 @@
 
 .submit-btn:hover {
   background-color: rgb(193, 49, 49);
+}
+.input-group > .form-control,
+.input-group > .form-floating,
+.input-group > .form-select {
+  width: 100%;
 }
