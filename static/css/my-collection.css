@@ -1,0 +1,117 @@
+.income-container {
+  width: 50%; /* Adjust width as needed */
+  margin-top: 50px; /* Increase the margin from top */
+  font-size: 1.5rem; /* Decrease the text size */
+  font-weight: 600; /* Slightly reduce font weight */
+  gap: 15px; /* Space between the text and value */
+  color: #fff; /* Ensure visibility over background */
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+#income-value {
+  font-size: 1.3rem; /* Decrease the size of the value */
+}
+
+/* Profile Section */
+.profile-section {
+  background-image: url("../image/profile-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+/* New Section Styles */
+.daily-stats-section {
+  margin-top: 30px;
+  margin: 30px 20px 30px 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.daily-stats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* To position the badge inside the header */
+  gap: 15px;
+}
+
+/* Ongoing badge styles */
+.badge-ongoing {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  background-color: #34c0d7;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.daily-stats-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+/* Updated heading size */
+.daily-stats-heading {
+  font-family: "Roboto-Medium";
+  font-size: 1rem; /* Decreased font size */
+  color: #333333;
+  font-weight: 600;
+}
+
+/* Styling for the section */
+.stats-section {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between the upper and lower sections */
+}
+
+/* Upper div styling */
+.stats-upper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between rows */
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.stats-row p {
+  margin: 0;
+}
+
+.stats-row span {
+  font-weight: 600;
+}
+
+/* Lower div styling */
+.stats-lower {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+#income-value {
+  color: #34c0d7;
+}
+
+.stats-lower span {
+  margin-left: 5px; /* Space between "Income:" and its value */
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Product Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recharge.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my-collection.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/team.css') }}" />
+</head>
+
+<body>
+    <div class="container-fluid text-center mt-5">
+        <div class="topDiv">
+            <div class="backButton">
+                <a href="javascript:history.back()"><i class="fa-solid fa-angle-left"></i></a>
+            </div>
+            <div class="invite-heading recharge-heading">Team</div>
+        </div>
+
+        <section class="profile-section">
+            <div class="profile-container">
+                <!-- Balance Section -->
+                <div class="balance-container">
+                    <span>Total recharge</span>
+                    <i class="fa-solid fa-eye" id="eye-icon" style="cursor: pointer"></i>
+                    <div id="balance-value">{{ total_recharge }}</div>
+                </div>
+
+                <!-- New Total Income Section -->
+                <div class="income-container">
+                    <p>Team assets: <span>&#8377;${{ team_asset }}</span></p>
+                    <p>Team Number: <span>{{ team_member }}</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toggle Button Section -->
+        <div class="toggle-section">
+            <button class="btn btn-toggle active" data-target="lv1-section">LV:1</button>
+            <button class="btn btn-toggle" data-target="lv2-section">LV:2</button>
+            <button class="btn btn-toggle" data-target="lv3-section">LV:3</button>
+        </div>
+
+        <!-- Daily Stats Sections -->
+        {% for user in team.level_1 %}
+        <section class="daily-stats-section lv1-section">
+            <div class="daily-stats-header">
+                <div class="inner-div daily-stats-header">
+                    <img src="{{ url_for('static', filename='image/logo.jpg') }}" alt="logo" class="daily-stats-logo" />
+                    <h2 class="daily-stats-heading">
+                        Registration time:
+                        <div class="registration-date-time d-flex">
+                            <p class="registration-date-time ms-3">{{user.signup_time}}</p>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+
+            <section class="stats-section">
+                <div class="stats-upper">
+                    <div class="stats-row">
+                        <p>Recharge:</p>
+                        <span id="total-value">{{ user.recharge }}</span>
+                    </div>
+                    <div class="stats-row">
+                        <p>Withdrawal:</p>
+                        <span id="daily-value">{{user.withdrawal}}</span>
+                    </div>
+
+                    <div class="stats-row">
+                        <p>Phone:</p>
+                        <span id="add-day-value">{{ user.phone }}</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+        {% endfor %}
+
+        {% for user in team.level_2 %}
+        <section class="daily-stats-section lv2-section" style="display: none">
+            <div class="daily-stats-header">
+                <div class="inner-div daily-stats-header">
+                    <img src="{{ url_for('static', filename='image/logo.jpg') }}" alt="logo" class="daily-stats-logo" />
+                    <h2 class="daily-stats-heading">
+                        Registration time:
+                        <div class="registration-date-time d-flex">
+                            <p class="registration-date-time ms-3">{{user.signup_time}}</p>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+
+            <section class="stats-section">
+                <div class="stats-upper">
+                    <div class="stats-row">
+                        <p>Recharge:</p>
+                        <span id="total-value">{{ user.recharge }}</span>
+                    </div>
+                    <div class="stats-row">
+                        <p>Withdrawal:</p>
+                        <span id="daily-value">{{user.withdrawal}}</span>
+                    </div>
+
+                    <div class="stats-row">
+                        <p>Phone:</p>
+                        <span id="add-day-value">{{ user.phone }}</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+        {% endfor %}
+
+        {% for user in team.level_3 %}
+        <section class="daily-stats-section lv3-section" style="display: none">
+            <div class="daily-stats-header">
+                <div class="inner-div daily-stats-header">
+                    <img src="{{ url_for('static', filename='image/logo.jpg') }}" alt="logo" class="daily-stats-logo" />
+                    <h2 class="daily-stats-heading">
+                        Registration time:
+                        <div class="registration-date-time d-flex">
+                            <p class="registration-date-time ms-3">{{user.signup_time}}</p>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+
+            <section class="stats-section">
+                <div class="stats-upper">
+                    <div class="stats-row">
+                        <p>Recharge:</p>
+                        <span id="total-value">{{ user.recharge }}</span>
+                    </div>
+                    <div class="stats-row">
+                        <p>Withdrawal:</p>
+                        <span id="daily-value">{{user.withdrawal}}</span>
+                    </div>
+
+                    <div class="stats-row">
+                        <p>Phone:</p>
+                        <span id="add-day-value">{{ user.phone }}</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+        {% endfor %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/team.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Product Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recharge.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/withdrawl.css') }}" />
+</head>
+
+<body>
+    <div class="container-fluid text-center mt-5">
+        <div class="topDiv">
+            <div class="backButton">
+                <a href="javascript:history.back()"><i class="fa-solid fa-angle-left"></i></a>
+            </div>
+            <div class="recharge-heading">Withdrawals</div>
+        </div>
+
+        <section class="recharge-section">
+            <h3 class="mb-3 text-start">Withdrawal amount</h3>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text rupee-symbol" style="font-size: 20px">
+                            &#x20B9;
+                        </span>
+                        <form method="POST" action="{{ url_for('withdraw') }}">
+
+                            <input type="number" class="form-control" name="amount" placeholder="Amount" min="0"
+                                required />
+                    </div>
+
+                    <div class="Assets-tax">
+                        <p>
+                            Assets:<span class="assets-val">&#8377;${{ wallet_balance }}</span>
+                        </p>
+                        <p>Tax:<span class="tax-val">10%</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="withdrawal-info-section mt-4">
+            <h3 class="mb-3 text-start">Bank Account Information</h3>
+            {% if bank_details %}
+            <div class="row justify-content-center text-start">
+                <div class="col-12 col-md-8">
+                    <div class="account-info">
+                        <!-- <p>Phone number: <span class="phone-number">111*****</span></p> -->
+                        <p>
+                            Account Number:
+                            <span class="bank-account">{{ bank_details.account_number }}</span>
+                        </p>
+                        <p>
+                            Bank Name:
+                            <span class="full-name">{{ bank_details.bank_name }}</span>
+                        </p>
+                        <p>
+                            IFSC:
+                            <span class="ifsc-code">{{ bank_details.ifsc }}</span>
+                        </p>
+                        <p>
+                            Branch Name:
+                            <span class="ifsc-code">{{ bank_details.branch_name }}</span>
+                        </p>
+                        <!-- Password label and input in the same line -->
+                        <div class="password-row">
+                            <label for="withdrawal-password" class="password-label">Password:</label>
+                            <input type="password" id="withdrawPassword" name="withdrawPassword"
+                                class="form-control withdrawal-password-input" placeholder="Withdrawal Password"
+                                required />
+                        </div>
+                    </div>
+                    <input type="hidden" name="amount" value="{{ amount }}" />
+                    <!-- Confirm Withdrawal Button -->
+                    <button class="btn btn-confirm-withdrawal mt-4" id="confirmWithdrawalBtn" type="submit">
+                        Confirm Withdrawal
+                    </button>
+                    {% else %}
+                    <p class="no-bank-details">
+                        No bank details found. Please add your bank details first.
+                    </p>
+                    <button type="button" class="btn btn-confirm-withdrawal mt-4"
+                        onclick="window.location.href='{{ url_for('bank_details') }}'">
+                        Add Bank Details
+                    </button>
+                    {% endif %}
+                    </form>
+
+                    <a href="{{ url_for('profile') }}">Back to Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!--Recharge Instructions Section -->
+        <section class="recharge-instructions mt-4">
+            <h3 class="mb-3 text-start">Recharge Instructions</h3>
+            <ul class="list-unstyled">
+                <li class="instruction-item">
+                    <span class="arrow">&#x25B2;</span>
+                    Minimum withdrawal: 120.00
+                </li>
+                <li class="instruction-item">
+                    <span class="arrow">&#x25B2;</span> Withdrawal time 00:30 - 18:30
+                </li>
+                <li class="instruction-item">
+                    <span class="arrow">&#x25B2;</span> -Fill in the bank account
+                    information and lFSC code correct
+                </li>
+                <li class="instruction-item">
+                    <span class="arrow">&#x25B2;</span> Same day withdrawals will be
+                    credited to the accounton thesame day
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+
+
+</body>
+
+</html>

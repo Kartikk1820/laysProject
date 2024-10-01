@@ -1,0 +1,54 @@
+.my-bank-img {
+  width: 100%;
+  /* Ensures the image takes full width */
+  height: 290px;
+  /* Set the height to 200px */
+  object-fit: cover;
+  /* This helps to maintain the aspect ratio of the image */
+  border-radius: 0 0 50px 50px;
+  margin-bottom: 5px;
+}
+
+.no-border {
+  border: none;
+  /* Remove all borders */
+  border-bottom: 1px solid #ccc;
+  /* Optional: Add a bottom border for better visibility */
+  border-radius: 0;
+  /* Remove border radius */
+  box-shadow: none;
+  /* Remove any box shadow */
+  margin-bottom: 20px;
+  /* Add upper space to each input */
+  color: #333;
+  /* Change text color */
+}
+
+.no-border::placeholder {
+  color: #aaa;
+  /* Change placeholder text color */
+  font-size: 0.85rem;
+  /* Make placeholder text smaller */
+}
+
+.no-border:focus {
+  outline: none;
+  /* Remove the default focus outline */
+  border-bottom: 1px solid #007bff;
+  /* Optional: Change bottom border color on focus */
+}
+
+.btn-submit {
+  font-size: 1.3rem;
+  width: 45%;
+  display: block;
+  /* Make the button a block element to center it */
+  margin: 20px auto;
+  /* Add margin for spacing and center it */
+  border-radius: 50px !important;
+  background: linear-gradient(135deg,
+      rgba(203, 21, 23, 1) 0%,
+      rgba(255, 102, 13, 1) 100%);
+  box-shadow: 0px 9px 20px rgba(219, 171, 171, 0.24);
+  margin-top: 40px;
+}

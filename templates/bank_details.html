@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>My Bank</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/recharge.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/my-bank.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container-fluid text-center mt-5">
+      <div class="topDiv">
+        <div class="backButton">
+          <a href="javascript:history.back()"
+            ><i class="fa-solid fa-angle-left"></i
+          ></a>
+        </div>
+        <div class="recharge-heading">My Bank</div>
+      </div>
+      <img
+        class="my-bank-img"
+        src="{{ url_for('static', filename='image/my-bank.jpg') }}"
+        style="border-radius: 0 0 50px 50px"
+        alt=""
+      />
+      <section class="bank-details-section">
+        <form
+          id="bank-details-form"
+          action="{{ url_for('bank_details') }}"
+          method="POST"
+        >
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control no-border"
+              id="fullName"
+              name="fullName"
+              placeholder="Full Name"
+              value="{{ bank_details['full_name'] if bank_details else '' }}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="tel"
+              class="form-control no-border"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              value="{{ bank_details['phone_number'] if bank_details else '' }}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control no-border"
+              id="bankAccount"
+              name="bankAccount"
+              placeholder="Bank Account"
+              value="{{ bank_details['bank_account'] if bank_details else '' }}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control no-border"
+              id="bankName"
+              name="bankName"
+              placeholder="Bank Name"
+              value="{{ bank_details['bank_name'] if bank_details else '' }}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control no-border"
+              id="ifsc"
+              name="ifsc"
+              placeholder="IFSC"
+              value="{{ bank_details['ifsc'] if bank_details else '' }}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control no-border"
+              id="branch_name"
+              name="branch_name"
+              placeholder="Branch Name"
+              value="{{ bank_details['branch_name'] if bank_details else '' }}"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control no-border"
+              id="withdrawalPassword"
+              name="withdrawalPassword"
+              placeholder="Withdrawal Password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+  </body>
+</html>

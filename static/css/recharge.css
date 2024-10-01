@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.topDiv a {
+  text-decoration: none !important;
+  color: #333333 !important;
+}
+
+.topDiv a :hover {
+  color: #bcb6b6 !important;
+}
+
+.container-fluid {
+  margin: 0 !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.topDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.backButton {
+  position: absolute;
+  left: 0;
+  padding-left: 10px;
+  font-size: 1.6rem;
+}
+
+.recharge-heading {
+  font-family: "Roboto-Medium";
+  font-size: 1.9rem;
+  color: #333333;
+  font-weight: 600;
+  line-height: 70px;
+}
+
+/* Recharge Section */
+.recharge-section {
+  padding: 20px;
+  background-color: white;
+}
+
+.recharge-section h3 {
+  text-align: center;
+}
+
+.recharge-section button {
+  height: 60px;
+  /* Set your desired button height */
+  font-size: 18px;
+  /* Optionally increase the font size for better appearance */
+}
+
+/* General button styling for the section */
+.recharge-section button {
+  font-size: 18px;
+  position: relative;
+  /* For the Hot badge on the Pay-A button */
+  background: #34c0d7 !important;
+  cursor: pointer;
+}
+
+/* Pay-A button specific height */
+.recharge-section .btn-primary {
+  height: 60px;
+}
+
+/* Recharge button specific height */
+.recharge-section .btn-success {
+  height: 45px;
+}
+
+/* Styling for the image inside input box */
+.rupee-symbol img {
+  width: 15px;
+  height: 15px;
+}
+
+.recharge-section .form-control {
+  height: 60px;
+  font-size: 18px;
+  background-color: #f6f6f6;
+}
+
+.badge-hot {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  /* For a square look, adjust the radius if needed */
+}
+
+/* Recharge Instructions section */
+.recharge-instructions {
+  text-align: left;
+  /* Align the text to the left */
+  margin-top: 20px;
+  /* Space above the section */
+  padding: 15px;
+  /* Same padding as the upper section */
+  background-color: white;
+}
+
+/* Arrow styling */
+.arrow {
+  color: blue;
+  /* Set the arrow color to blue */
+  font-size: 12px;
+  /* Adjust size to make it smaller */
+  margin-right: 8px;
+  /* Space between the arrow and text */
+}
+
+/* Aligning text with arrow */
+.instruction-item {
+  display: flex;
+  /* Use flexbox for alignment */
+  align-items: center;
+  /* Center the items vertically */
+  font-size: 20px;
+  /* Increased font size for instructions */
+  margin-bottom: 12px;
+  /* Space between each instruction */
+  color: #666666;
+}
+
+@media (min-width: 768px) {
+  .col-md-4 {
+    width: 50%;
+  }
+}

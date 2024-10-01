@@ -1,0 +1,30 @@
+/* Section Styles */
+.company-info {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.about-heading {
+  display: flex;
+  align-items: center;
+}
+
+.red-symbol {
+  color: red;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.company-description {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  margin-top: 10px;
+  color: #333;
+}

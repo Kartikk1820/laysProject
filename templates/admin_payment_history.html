@@ -1,0 +1,81 @@
+<!-- Relative path: templates\admin_payment_history.html -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Payment History</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>All Payment Transactions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Payer ID</th>
+                    <th>Receiver ID</th>
+                    <th>Payment Time</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ payment['payment_id'] }}</td>
+                    <td>{{ payment['payer_id'] }}</td>
+                    <td>{{ payment['receiver_id'] }}</td>
+                    <td>{{ payment['payment_time'] }}</td>
+                    <td>{{ payment['amount'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Flask Application</p>
+    </footer>
+
+</body>
+
+</html>

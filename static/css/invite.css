@@ -1,0 +1,176 @@
+body {
+  background-color: #eeeef1;
+}
+
+.content-wrapper {
+  background: url("../../static/image/my-bank.jpg");
+  background-size: cover;
+  /* optional */
+  background-repeat: no-repeat;
+  object-fit: cover;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.invite-info {
+  margin-top: 20px;
+}
+
+.invite-text {
+  font-size: 30px;
+  color: #ffffff;
+  line-height: 70px;
+  background: #b8b8b8;
+  text-shadow: -3px -3px 0 #e5dfdf;
+  font-style: italic;
+  text-align: center;
+  -webkit-text-stroke: 2px #477fdf;
+  background: linear-gradient(180deg, #f9d5d5 60%, #dde1e4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wait-text {
+  /* background: url(/image/invite-heading.png); */
+  width: 70%;
+  height: 50px;
+  background: url("../../static/image/invite-heading.png") no-repeat;
+  background-size: 100% 100%;
+  margin: 15px auto 0;
+  font-size: 25px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 50px;
+  margin-bottom: 20px;
+}
+
+/* Commission Details Section */
+.commission-details {
+  background: url("../../static/image/invite-commision-sectionbg.jpg");
+  background-size: cover;
+  /* optional */
+  background-repeat: no-repeat;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 30px 10px 50px 10px;
+  padding: 20px 40px 20px 40px;
+  color: #ffffff;
+  font-size: 35px;
+  line-height: 30px;
+}
+
+.commission-details p {
+  position: relative;
+  font-size: 18px;
+  margin-left: 40px;
+  /* Indent the paragraph text */
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.commission-details p::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);
+}
+
+/* Invitation Section */
+.invitation-section {
+  background: #ffffff;
+  color: #333333;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 30px 10px;
+}
+
+.invitation-section p {
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(205, 203, 203, 0.4);
+}
+
+#invite-link,
+#invite-code {
+  color: #999999;
+}
+
+.copy-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px 0 30px 0;
+}
+
+.copy-buttons button {
+  background-color: #34c0d7;
+  color: #ffffff;
+  width: 40%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.copy-buttons button:hover {
+  background-color: #356ab7;
+}
+
+/* QR Code Frame Styling */
+.qr-code-frame {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 20px auto;
+  background-color: #fff;
+  margin-bottom: 100px;
+}
+
+.qr-frame {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+canvas#qr-code {
+  margin-top: 18px;
+  height: 200px;
+  width: 200px;
+}
+
+canvas#qrCanvas {
+  position: absolute;
+  top: 25px;
+  /* Adjust to fit within the frame */
+  left: 25px;
+  width: 150px;
+  /* Adjust size of QR code */
+  height: 150px;
+  z-index: 2;
+}
+
+@media (max-width: 420px) {
+  .invite-text,
+  .wait-text {
+    font-size: 20px;
+  }
+
+  .copy-buttons button {
+    width: 45%;
+  }
+}
+
+@media screen and (min-device-width: 421px) and (max-device-width: 500px) {
+  .invite-text,
+  .wait-text {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,130 @@
+/* Top section with background image */
+.top-section {
+  background-image: url("../../static/image/loginbg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  position: relative;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+/* Second logo below the first logo, also bottom-center */
+.second-logo {
+  position: absolute;
+  bottom: -60px;
+  /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+/* Form container */
+.form-container {
+  margin-top: 20px;
+  /* Keep this for the form */
+  margin-bottom: 40px;
+  /* Add margin-bottom for spacing the form and submit button */
+}
+
+/* Toggle buttons for switching between Login and Register */
+.toggle-btn {
+  margin: 100px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-btn-innerDiv {
+  background-color: red;
+  width: 60%;
+  border-radius: 15pc;
+  background-color: rgba(242, 242, 242, 1);
+  color: rgba(187, 187, 196, 1);
+}
+
+/* Active button styles */
+.active-btn {
+  background-color: #fff !important;
+  /* Force the active background color */
+  color: rgb(64, 63, 63) !important;
+  /* Force the active text color */
+}
+
+/* Ensure the inactive buttons have the default styles */
+.loginBtn,
+.registerBtn {
+  width: 49.7%;
+  border-radius: 20px;
+  color: rgba(187, 187, 196, 1);
+  background-color: rgba(242, 242, 242, 1);
+  /* Default color for inactive buttons */
+  border: none;
+}
+
+.loginBtn:hover,
+.registerBtn:hover {
+  background-color: rgb(138, 131, 131);
+  /* Optional hover effect */
+}
+
+/* Input fields */
+.input-group {
+  margin-bottom: 10px;
+}
+
+/* Input fields with bottom border only */
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  /* Remove all borders */
+  border-bottom: 2px solid rgba(187, 187, 196, 1);
+  /* Bottom border */
+  background: transparent;
+  /* Transparent background for a clean look */
+  color: #333;
+  /* Text color */
+  font-size: 16px;
+  /* Adjust the font size */
+  outline: none;
+  /* Remove the blue outline on focus */
+  transition: border-color 0.3s ease;
+  /* Smooth transition for border */
+}
+
+/* Input focus state with accent color */
+.input-group input:focus {
+  border-bottom: 2px solid rgb(248, 246, 246);
+  /* Accent color on focus */
+}
+
+/* Updated Submit button */
+.submit-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(203, 21, 23, 1) 0%,
+    rgba(255, 102, 13, 1) 100%
+  );
+  color: white;
+  width: 50%;
+  /* Keep it 50% width */
+  height: 50px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 20px auto;
+  /* Center the button horizontally and add margin */
+  position: relative;
+  /* Remove the 'fixed' positioning */
+  margin-bottom: 100px;
+}
+
+.submit-btn:hover {
+  background-color: rgb(193, 49, 49);
+}

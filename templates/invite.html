@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Product Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recharge.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/invite.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid text-center mt-5">
+        <div class="content-wrapper">
+            <div class="topDiv">
+                <div class="backButton">
+                    <a href="javascript:history.back()">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </a>
+                </div>
+                <div class="invite-heading recharge-heading">Invite</div>
+            </div>
+
+            <div class="invite-info">
+                <div class="invite-text">Invite friends and get commissions</div>
+                <div class="wait-text">&#8226; Wait for you to take it &#8226;</div>
+            </div>
+        </div>
+        <section class="commission-details">
+            <p>27% commission for inviting first-level members</p>
+            <p>3% commission for inviting second-level members</p>
+            <p>2% commission for inviting third-level members</p>
+        </section>
+
+        <!-- Invitation Code and Link Section -->
+        {% if user_id %}
+        <section class="invitation-section">
+            <p>
+                Invitation link:
+                <span id="invite-link">{{ invite_link }}</span>
+            </p>
+            <p>Invitation code: <span id="invite-code">{{ user_id }}</span></p>
+
+            <div class="copy-buttons">
+                <button id="copy-code" onclick="copyText('invite-code')">
+                    Copy Invitation Code
+                </button>
+                <button id="copy-link" onclick="copyText('invite-link')">
+                    Copy Invitation Link
+                </button>
+            </div>
+        </section>
+        <!-- QR Code Frame Section -->
+        <div class="qr-code-frame">
+            <img src="{{ url_for('static', filename='image/qrborder.png') }}" alt="QR Code Frame" class="qr-frame" />
+
+            <canvas id="qr-code"></canvas>
+        </div>
+        <script>
+            // Get the invite link
+            const inviteLink = "{{ invite_link }}";
+
+            // Create a new QRious instance
+            const qr = new QRious({
+                element: document.getElementById('qr-code'),
+                value: inviteLink,
+                size: 250 // Size of the QR code
+            });
+
+            // Copy text function
+            function copyText(elementId) {
+                const textToCopy = document.getElementById(elementId).innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    alert(`${textToCopy} copied to clipboard!`);
+                }).catch(err => {
+                    console.error('Error copying text: ', err);
+                });
+            }
+        </script>
+        {% else %}
+        <h1>You need to log in to see your invite link.</h1>
+        {% endif %}
+
+        <footer>
+            <div class="footer">
+                <a href="{{ url_for('home') }}">
+                    <div class="homeDiv">
+                        <img src="{{ url_for('static', filename='image/icon1-1.png') }}" />
+                        <p>Home</p>
+                    </div>
+                </a>
+                <a href="{{ url_for('invite') }}">
+                    <div class="homeDiv">
+                        <img src="{{ url_for('static', filename='image/icon2.png') }}" />
+                        <p>Invite</p>
+                    </div>
+                </a>
+                <a href="{{ url_for('team') }}">
+                    <div class="homeDiv">
+                        <img src="{{ url_for('static', filename='image/icon3.png') }}" />
+                        <p>Team</p>
+                    </div>
+                </a>
+                <a href="{{ url_for('profile') }}">
+                    <div class="homeDiv">
+                        <img src="{{ url_for('static', filename='image/icon4.png') }}" />
+                        <p>My</p>
+                    </div>
+                </a>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>

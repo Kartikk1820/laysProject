@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 0 !important;
+}
+
+.section1 {
+  /* background-color: pink; */
+  width: 100%;
+}
+
+.logo {
+  width: 100%;
+  display: flex;
+  object-fit: cover;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: aqua; */
+}
+
+.logo img {
+  width: 60px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+/* Custom styles for indicators */
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  /* Makes the indicators circular */
+  background-color: #000;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: -40px;
+  /* Positions the indicators below the images */
+  /* background-color: rgb(211, 116, 132); */
+}
+
+.carousel-inner {
+  height: 236px;
+  border-radius: 4%;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background-color: #34c0d7;
+}
+
+.services {
+  width: 100%;
+  /* background-color: palevioletred; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.services a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.recharge-img img {
+  height: 35px;
+  width: 35px;
+}
+
+/* options toggle  */
+.choose-plans {
+  margin-top: 20px;
+}
+
+.options {
+  /* background-color: #34c0d7; */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.toggleDivs {
+  width: 80%;
+  background-color: #ccc;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.options button {
+  height: 48px;
+  width: 49%;
+  cursor: pointer;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.options button.active {
+  background-color: #34c0d7;
+  color: #fff;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.card {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* plans section */
+.card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.fa-heart {
+  font-size: 2rem;
+}
+
+.buyNow {
+  width: 100%;
+  background-color: #34c0d7;
+  cursor: pointer;
+}
+
+.pricesDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.05rem;
+}
+
+.pricesDiv p {
+  margin-bottom: 0px !important;
+}
+
+.value {
+  color: #34c0d7;
+}
+
+/* footer */
+.footer {
+  width: 100%;
+  height: 6vh;
+  position: fixed;
+  bottom: 0px;
+  /* background-color: #34c0d7; */
+  background: #f3f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "Roboto-Medium";
+}
+
+.footer a {
+  text-decoration: none !important;
+  color: #565555;
+}
+
+.homeDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.homeDiv img {
+  height: 3vh;
+}
+
+.homeDiv p {
+  margin-bottom: 0px !important;
+}
+
+.row > * {
+  flex-shrink: 0;
+  width: 50%;
+}
+
+@media (min-width: 576px) {
+  .col-sm-6 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .services a {
+    font-size: 13px;
+  }
+}

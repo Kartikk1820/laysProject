@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Edit User</h1>
+    </header>
+
+    <main>
+        <form action="{{ url_for('edit_user', user_id=user['id']) }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ user['name'] }}" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" value="{{ user['phone'] }}" required>
+
+            <label for="invitation_code">Invitation Code:</label>
+            <input type="text" id="invitation_code" name="invitation_code" value="{{ user['invitation_code'] }}">
+
+            <label for="logged_in">Logged In:</label>
+            <select id="logged_in" name="logged_in">
+                <option value="0" {% if user['logged_in']==0 %}selected{% endif %}>No</option>
+                <option value="1" {% if user['logged_in']==1 %}selected{% endif %}>Yes</option>
+            </select>
+
+            <label for="new_password">New Password:</label>
+            <input type="password" id="new_password" name="new_password">
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password">
+
+            <label for="wallet_balance_change">Wallet Balance Change:</label>
+            <input type="number" id="wallet_balance_change" name="wallet_balance_change" step="0.01" value="0">
+
+            <button type="submit">Update User</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Flask Application</p>
+    </footer>
+
+</body>
+
+</html>

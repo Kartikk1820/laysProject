@@ -1,0 +1,94 @@
+body {
+  background-color: #eeeef1;
+}
+.Assets-tax {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 0 0;
+  padding: 10px 10px 0px 10px;
+  font-family: "Roboto-Medium";
+  font-size: 1.4rem;
+  color: #333333;
+  font-weight: 600;
+  border-radius: 10px;
+}
+.assets-val {
+  color: #34c0d7;
+  margin-left: 5px;
+}
+.tax-val {
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Styling for the Withdrawal button */
+.withdrawal-btn {
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.withdrawal-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Withdrawal info section styling */
+.withdrawal-info-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.account-info p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.account-info span {
+  font-weight: 600;
+  color: #007bff;
+}
+/* Styling for the Password row */
+.password-row {
+  display: flex;
+  align-items: center; /* Vertically align label and input */
+  gap: 0px; /* Space between the label and input box */
+  margin-top: 10px;
+}
+
+.password-label {
+  min-width: 100px; /* Adjust the label width to align with input */
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.withdrawal-password-input {
+  flex: 1; /* Make the input take up remaining space */
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Confirm Withdrawal Button */
+.btn-confirm-withdrawal {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-confirm-withdrawal:hover {
+  background-color: #0056b3;
+}

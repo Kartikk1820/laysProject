@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <style>
+        /* General page styles */
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #444;
+        }
+
+        /* Header Styles */
+        header {
+            /* background-color: #25476a; Soft green */
+            background-color: #25476a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 5px solid #388e3c;
+            /* Darker green */
+        }
+
+        header h2,
+        header h1 {
+            margin: 5px;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            /* Vibrant orange */
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #f57c00;
+            /* Darker orange */
+        }
+
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        main h2 {
+            font-size: 28px;
+            color: #4caf50;
+            /* Soft green for heading */
+        }
+
+        main p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        section {
+            margin-top: 30px;
+        }
+
+        section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #03a9f4;
+            /* Light blue */
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #03a9f4;
+            /* Light blue */
+            color: white;
+            font-weight: bold;
+            border-bottom: 2px solid #0288d1;
+            /* Darker blue */
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Alternating rows with new color */
+        tr:nth-child(even) {
+            background-color: #e3f2fd;
+            /* Light grayish-blue */
+        }
+
+        tr:hover {
+            background-color: #e1f5fe;
+            /* Lighter blue on hover */
+        }
+
+        td a {
+            color: #0973e1;
+            /* Green for action links */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #25476a;
+            color: white;
+            margin-top: 50px;
+            border-top: 5px solid #388e3c;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin-bottom: 10px;
+                margin-top: 20px;
+            }
+
+            main h2 {
+                font-size: 24px;
+            }
+
+            section h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Central Pool Balance: ${{ central_pool_balance }}</h2>
+        <h1>~~</h1>
+        <h2>Total Wallet Balance: {{ total_wallet_balance }}</h2>
+    </header>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('admin_dashboard') }}">Home</a></li>
+                <li><a href="{{url_for('admin_payment_history')}}">Payment History</a></li>
+                <li>
+                    <a href="{{ url_for('admin_pending_payments') }}">View Pending Payments</a>
+                </li>
+                <li><a href="{{url_for('logout')}}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome, Admin!</h2>
+        <p>
+            This is your dashboard where you can manage users and view statistics.
+        </p>
+
+        <section>
+            <h3>User Management</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Wallet Balance</th>
+                        <th>Signup Time</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user['id'] }}</td>
+                        <td>{{ user['name'] }}</td>
+                        <td>{{ user['phone'] }}</td>
+                        <td>{{ user.wallet_balance }}</td>
+                        <td>{{ user['signup_time'] }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_user', user_id=user['id']) }}">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+
+</body>
+
+</html>

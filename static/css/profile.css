@@ -1,0 +1,175 @@
+body {
+  background-color: #eeeef1;
+}
+.profile-section {
+  background-image: url("../image/profile-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+}
+
+.logo-id-container {
+  display: flex;
+  align-items: center;
+  width: 60%; /* Increase width to 60% */
+  margin-bottom: 20px;
+  justify-content: flex-start;
+}
+
+.logo {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px; /* Increase space between logo and profile ID */
+}
+
+.balance-container {
+  width: 50%;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex; /* Aligns "Balance:" and the eye icon */
+  align-items: center; /* Keeps the icon and text aligned vertically */
+  gap: 10px; /* Add space between elements */
+  flex-wrap: wrap;
+}
+
+#eye-icon {
+  margin-left: 5px; /* Space between the text and the eye icon */
+  cursor: pointer; /* Show pointer cursor for the eye icon */
+}
+
+#balance-value {
+  display: block; /* Ensures the balance value goes to the next line */
+  margin-top: 10px; /* Add some space between the eye icon and balance value */
+  font-size: 1.5rem; /* You can adjust this size if needed */
+}
+
+.transaction-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.withdraw,
+.recharge {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.profile-id {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.link-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.link-section {
+  margin: 15px;
+  border-radius: 10px;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333333;
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.link-item:hover {
+  background-color: #ececec;
+}
+
+.link-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.blue-arrow {
+  margin-left: auto; /* Push the arrow to the right */
+  color: #007bff; /* Blue color */
+}
+
+/* Sign Out Button Styling */
+.signout-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.signout-btn {
+  background-color: #ff4d4d; /* Red color for the button */
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 80%; /* Default for small screens */
+  margin-bottom: 40px;
+}
+
+/* Change width for larger screens */
+@media (min-width: 768px) {
+  .signout-btn {
+    width: 50%;
+  }
+}
+
+.signout-btn:hover {
+  background-color: #ff4d4d; /* Darker red on hover */
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .logo-id-container {
+    width: 80%; /* Adjust width if needed */
+  }
+
+  .logo-id-container,
+  .balance-container,
+  .withdraw,
+  .recharge,
+  .profile-id {
+    font-size: 1.2rem; /* Decrease text size */
+  }
+}

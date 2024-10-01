@@ -1,0 +1,81 @@
+body {
+  background-color: #eeeef1;
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.toggle-btn {
+  width: 30%;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  padding-bottom: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-btn:focus {
+  outline: none;
+}
+
+/* Red underline for active button */
+.toggle-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: red;
+}
+
+.toggle-btn:hover {
+  color: #333;
+}
+
+.left-section-heading {
+  font-size: 1.4rem;
+}
+
+#contentContainer {
+  background-color: #fff;
+}
+
+.incomeRecord,
+.withdrawalRecord,
+.rechargeRecord {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  line-height: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.date-time {
+  color: #999999;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.right-section {
+  color: #34c0d7 !important;
+  font-size: 1.8rem;
+}
+
+.text-success {
+  color: green !important;
+}
+
+.text-danger {
+  color: red !important;
+}

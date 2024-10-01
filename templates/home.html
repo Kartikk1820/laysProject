@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Product Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+</head>
+
+<body>
+  <div class="container text-center mt-5">
+    <section class="section1">
+      <div class="logo my-1">
+        <img src="{{ url_for('static', filename='image/logo.jpg') }}" />
+      </div>
+      <!-- carousel -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        </div>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='image/carousel_image.jpg') }}" class="d-block w-100" alt="..." />
+          </div>
+          <div class="carousel-item">
+            <img src="{{ url_for('static', filename='image/carousel_image2.jpg') }}" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+      </div>
+      <div class="services my-5">
+        <a class="recharge-service" href="{{url_for('recharge')}}">
+          <div class="recharge-img">
+            <img src="{{ url_for('static', filename='image/recharge.png') }}" />
+            <p>Recharge</p>
+          </div>
+        </a>
+        <a class="recharge-service" href="{{url_for('withdraw')}}">
+          <div class="recharge-img">
+            <img src="{{ url_for('static', filename='image/withdraw.png') }}" />
+            <p>Withdraw</p>
+          </div>
+        </a>
+        <a class="recharge-service">
+          <div class="recharge-img">
+            <img src="{{ url_for('static', filename='image/online_customer_service.png') }}" />
+            <p>Groups</p>
+          </div>
+        </a>
+        <a class="recharge-service">
+          <div class="recharge-img">
+            <img src="{{ url_for('static', filename='image/telegram.png') }}" />
+            <p>Channel</p>
+          </div>
+        </a>
+        <a class="recharge-service">
+          <div class="recharge-img">
+            <img src="{{ url_for('static', filename='image/kefu.png') }}" />
+            <p>Online</p>
+          </div>
+        </a>
+      </div>
+      <!-- toggle A & B -->
+      <div class="options">
+        <div class="toggleDivs">
+          <button id="optionA" class="active">Option A</button>
+          <button id="optionB">Option B</button>
+        </div>
+      </div>
+    </section>
+    <section class="plans">
+      <div class="choose-plans">
+        <!-- Cards for Option A -->
+        <div id="cardsA" class="cards">
+
+          {% for scheme in schemes %}
+          {% if scheme['option'] == 'A' %}
+          <div class="card mb-3">
+            <div class="card-heading">
+              <p>{{ scheme['name'] }}</p>
+              <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ url_for('static', filename='image/logo.jpg') }}" class="img-fluid rounded-start"
+                  alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <ul class="list-unstyled">
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Value:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{scheme['initial_deposit']}}
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Revenue:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{(scheme['daily_rate']
+                          * scheme['initial_deposit']) | round(2)}}
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Cycle:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{scheme['time_duration']}}
+                          day
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Total:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{scheme['time_duration']
+                          * scheme['initial_deposit']}}
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                  {% if scheme['scheme_id'] in subscribed_scheme_ids %}
+                  <span class="btn btn-secondary">Already Active</span>
+                  {% else %}
+                  <form action="{{ url_for('subscribe_scheme', scheme_id=scheme['scheme_id']) }}" method="POST">
+                    <button type="submit" class="btn buyNow">Buy Now</button>
+                  </form>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Cards for Option B -->
+        <div id="cardsB" class="cards hidden">
+
+
+          {% for scheme in schemes %}
+          {% if scheme['option'] == 'B' %}
+          <div class="card mb-3">
+            <div class="card-heading">
+              <p>{{ scheme['name'] }}</p>
+              <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ url_for('static', filename='image/options2.png') }}" class="img-fluid rounded-start"
+                  alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <ul class="list-unstyled">
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Value:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{scheme['initial_deposit']}}
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Revenue:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{(scheme['daily_rate']
+                          * scheme['initial_deposit'] )| round(2)}}
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Cycle:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{scheme['time_duration']}}
+                          day
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="pricesDiv">
+                        <p class="key">Total:</p>
+                        <p class="value">
+                          <img
+                            src="{{ url_for('static', filename='image/s-blue.png') }}" />&nbsp;{{scheme['time_duration']
+                          * scheme['initial_deposit']}}
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                  {% if scheme['scheme_id'] in subscribed_scheme_ids %}
+                  <span class="btn btn-secondary">Already Active</span>
+                  {% else %}
+                  <form action="{{ url_for('subscribe_scheme', scheme_id=scheme['scheme_id']) }}" method="POST">
+                    <button type="submit" class="btn buyNow">Buy Now</button>
+                  </form>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endif %}
+          {% endfor %}
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <div class="footer">
+      <a>
+        <div class="homeDiv">
+          <img src="{{ url_for('static', filename='image/icon1-1.png') }}" />
+          <p>Home</p>
+        </div>
+      </a>
+      <a href="/invite">
+        <div class="homeDiv">
+          <img src="{{ url_for('static', filename='image/icon2.png') }}" />
+          <p>Invite</p>
+        </div>
+      </a>
+      <a href="{{ url_for('team') }}">
+        <div class="homeDiv">
+          <img src="{{ url_for('static', filename='image/icon3.png') }}" />
+          <p>Team</p>
+        </div>
+      </a>
+      <a href="/profile">
+        <div class="homeDiv">
+          <img src="{{ url_for('static', filename='image/icon4.png') }}" />
+          <p>My</p>
+        </div>
+      </a>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+
+</html>

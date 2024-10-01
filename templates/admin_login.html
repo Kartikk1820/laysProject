@@ -1,0 +1,49 @@
+<!-- Relative path: templates\admin_login.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>My Flask Application</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li class="login-signup">
+                    <a href="/login">Login</a>
+                    <span> | </span>
+                    <a href="/signup">Signup</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Admin Login</h2>
+        <form action="/admin/login" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Flask Application</p>
+    </footer>
+
+</body>
+
+</html>
