@@ -52,7 +52,7 @@ body {
 
 /* Commission Details Section */
 .commission-details {
-  background: url("../../static/image/invite-commision-sectionbg.jpg");
+  background: url("../../static/image/text-bg.jpg");
   background-size: cover;
   /* optional */
   background-repeat: no-repeat;
