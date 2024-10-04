@@ -1,93 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Company Profile</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/recharge.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/profile.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/invite.css') }}"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Company Profile</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/recharge.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/invite.css') }}" />
-</head>
-
-<body>
-  <div class="container-fluid text-center mt-5">
-    <div class="topDiv">
-      <div class="backButton">
-        <a href="javascript:history.back()"><i class="fa-solid fa-angle-left"></i></a>
+  <body>
+    <div class="container-fluid text-center mt-5">
+      <div class="topDiv">
+        <div class="backButton">
+          <a href="javascript:history.back()"
+            ><i class="fa-solid fa-angle-left"></i
+          ></a>
+        </div>
+        <div class="invite-heading recharge-heading">Company Profile</div>
       </div>
-      <div class="invite-heading recharge-heading">Company Profile</div>
+      <div class="content-wrapper" style="height: 35vh"></div>
     </div>
-    <div class="content-wrapper" style="height: 35vh"></div>
-  </div>
 
-  <!-- New Section for Company Information -->
-  <section class="company-info mt-4 px-4">
-    <div class="about-heading">
-      <span class="red-symbol">&#x25A0;</span>
-      <h2 class="d-inline-block">[About Lay's]</h2>
-    </div>
-    <p class="company-description mt-3">
-      In 1932, Herman W. Lay started a small business in Nashville, Tennessee selling potato chips made by a company in
-      Atlanta, Georgia. Six years later Herman bought that company to form H. W. Lay & Company.
-    </p>
-    <p class="company-description">
-      In 1944, Herman simplified the company’s name to the one we all know today: Lay’s® Potato Chips and became the
-      first snack food company to advertise on television.
-    </p>
-    <p class="company-description">
-      Lay’s® potato chips crossed the border into Canada in 1962 and won over Canadians with their crispy and guaranteed
-      fresh taste. By 1997, Lay’s® potato chips became a favourite choice for Canadians and are considered Canada’s
-      favourite potato chip brand to this day. In keeping with Herman’s innovative spirit and dedication to quality, the
-      Lay’s® brand now offers consumers many different types of chips - including regular, wavy and kettle cooked potato
-      chips - in over 22 flavours.
-    </p>
-    <p class="company-description">
-      Lay’s® potato chips continue to be made with quality, homegrown Canadian potatoes. Simple, wholesome and real.
-      After carefully washing, peeling and slicing the potatoes, we cook them until they are perfectly crispy, bringing
-      out the wonderful potato taste that Canadians know and love.
-    </p>
-    <p class="company-description">
-      Delicious ingredients and homegrown potatoes – so you get that perfect, crispy chip every time you reach into our
-      bag. Gotta Have Lay’s™
-    </p>
-  </section>
+    <!-- New Section for Company Information -->
+    <section class="company-info mt-4 px-4">
+      <div class="about-heading">
+        <span class="red-symbol">&#x25A0;</span>
+        <h2 class="d-inline-block">[About Nestlé]</h2>
+      </div>
+      <p class="company-description mt-3">
+        In 1867, Henri Nestlé, a pharmacist, started a small company in Vevey,
+        Switzerland, developing a breakthrough infant food product to help
+        nourish babies who couldn’t be breastfed. Just a few years later, his
+        business grew significantly, and the Nestlé name became synonymous with
+        nutrition and health.
+      </p>
+      <p class="company-description">
+        In 1905, Nestlé merged with the Anglo-Swiss Condensed Milk Company to
+        form what we now know as Nestlé S.A., expanding its product offerings
+        and cementing its role as a global leader in nutrition, health, and
+        wellness.
+      </p>
+      <p class="company-description">
+        Nestlé products entered Canada in 1918, bringing a wide array of
+        nutritious food items that quickly gained popularity for their quality.
+        By the mid-20th century, Nestlé became a household name not only in
+        Canada but across the world. Today, Nestlé offers a vast range of
+        products, including baby foods, bottled water, dairy products, and
+        confectionery.
+      </p>
+      <p class="company-description">
+        Nestlé has grown its portfolio to include numerous renowned brands, each
+        offering consumers the same dedication to quality and innovation that
+        Henri Nestlé stood for over 150 years ago.
+      </p>
+    </section>
 
-  <!-- Second Section -->
-  <section class="company-info mt-4 px-4">
-    <div class="about-heading">
-      <span class="red-symbol">&#x25A0;</span>
-      <h2 class="d-inline-block">[About Lay's]</h2>
-    </div>
-    <p class="company-description mt-3">
-      Wherever celebrations and good times happen, the LAY'S® brand will be there just as it has been for more than 80
-      years. With flavors almost as rich as our history, we have a chip or crisp flavor guaranteed to bring a smile to
-      your face.
-    </p>
-  </section>
+    <!-- Second Section -->
+    <section class="company-info mt-4 px-4">
+      <div class="about-heading">
+        <span class="red-symbol">&#x25A0;</span>
+        <h2 class="d-inline-block">[About Nestlé]</h2>
+      </div>
+      <p class="company-description mt-3">
+        At Nestlé, we prioritize using locally sourced ingredients, including
+        milk from trusted Canadian dairy farms. We focus on producing simple,
+        wholesome, and nutritious products that our consumers have come to rely
+        on. After carefully sourcing, processing, and packaging our products, we
+        ensure that every Nestlé item delivers the rich taste and superior
+        quality that families have enjoyed for generations.
+      </p>
+    </section>
 
-  <!-- Third Section -->
-  <section class="company-info mt-4 px-4">
-    <div class="about-heading">
-      <span class="red-symbol">&#x25A0;</span>
-      <h2 class="d-inline-block">[About Lay's]</h2>
-    </div>
-    <p class="company-description mt-3">
-      At Lay’s we get it – and you may be closer to a farm than you think. So go ahead and discover what makes Lay’s oh
-      so delicious. Every bag of Lay's Potato Chips in the US is made from our very own chip-perfecting potatoes grown
-      on over 100 farms across the US and a handful in Canada.
-    </p>
-    <p class="company-description">
-      Stay tuned for more information about our farms across North America and to hear from some of our farmers!
-    </p>
-  </section>
+    <!-- Third Section -->
+    <section class="company-info mt-4 px-4">
+      <div class="about-heading">
+        <span class="red-symbol">&#x25A0;</span>
+        <h2 class="d-inline-block">[About Nestlé]</h2>
+      </div>
+      <p class="company-description mt-3">
+        With a mission to enhance lives through food and beverages, Nestlé
+        continues to innovate and expand, offering products that deliver the
+        right balance of taste and nutrition. Wherever celebrations and family
+        moments occur, Nestlé has been part of them for more than a century.
+        Gotta Love Nestlé™!
+      </p>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+  </body>
 </html>
