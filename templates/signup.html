@@ -1,87 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login-signup.css') }}" />
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login-signup.css') }}"
+    />
     <title>Sign Up</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container text-center px-0">
-        <div class="top-section">
-            <img src="{{ url_for('static', filename='image/loginbg2.jpg') }}" alt="Another Logo" class="second-logo" />
+      <div class="top-section">
+        <img
+          src="{{ url_for('static', filename='image/Nestle_logo.webp') }}"
+          alt="Another Logo"
+          class="second-logo"
+        />
+      </div>
+
+      <!-- Alert for flashed messages -->
+      {% if message %}
+      <div class="alert alert-dismissible fade show" role="alert">
+        <div class="alert">{{ message }}</div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endif %}
+
+      <!-- Toggle Buttons for Login/Register -->
+      <div class="toggle-btn">
+        <div class="toggle-btn-innerDiv">
+          <button
+            class="btn loginBtn"
+            id="loginBtn"
+            onclick="window.location.href='{{ url_for('login') }}'"
+          >
+            Login
+          </button>
+          <button
+            class="btn registerBtn active-btn"
+            id=" registerBtn"
+            onclick="window.location.href='{{ url_for('signup') }}'"
+          >
+            Register
+          </button>
         </div>
-
-        <!-- Alert for flashed messages -->
-        {% if message %}
-        <div class="alert alert-dismissible fade show" role="alert">
-            <div class="alert">
-                {{ message }}
+      </div>
+      <form action="{{ url_for('signup') }}" method="POST">
+        <div class="form-container">
+          <div id="registerForm">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Name"
+                id="registerName"
+                name="name"
+                required
+              />
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Phone Number"
+                id="registerPhone"
+                name="phone"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Password"
+                id="registerPassword"
+                name="password"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Confirm Password"
+                id="confirmPassword"
+                name="confirm_password"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="invitationCode"
+                name="invitation_code"
+                {%
+                if
+                invite_code
+                %}
+                value="{{ invite_code  }}"
+                {%
+                else
+                %}
+                placeholder="Invitation Code"
+                {%
+                endif
+                %}
+              />
+            </div>
+          </div>
         </div>
-        {% endif %}
-
-        <!-- Toggle Buttons for Login/Register -->
-        <div class="toggle-btn">
-            <div class="toggle-btn-innerDiv">
-                <button class="btn loginBtn  id=" loginBtn"
-                    onclick="window.location.href='{{ url_for('login') }}'">Login</button>
-                <button class="btn registerBtn active-btn"" id=" registerBtn"
-                    onclick="window.location.href='{{ url_for('signup') }}'">Register</button>
-            </div>
-        </div>
-        <form action="{{ url_for('signup') }}" method="POST">
-            <div class="form-container">
-                <div id="registerForm">
-
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Name" id="registerName" name="name"
-                            required />
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Phone Number" id="registerPhone"
-                            name="phone" required />
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Password" id="registerPassword"
-                            name="password" required />
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Confirm Password" id="confirmPassword"
-                            name="confirm_password" required />
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="invitationCode" name="invitation_code" {% if
-                            invite_code %} value="{{ invite_code  }}" {% else %} placeholder="Invitation Code" {% endif
-                            %} />
-                    </div>
-
-                </div>
-            </div>
-            <button class="submit-btn" id="submitBtn" type="submit">
-                <i class="fas fa-arrow-right"></i>
-            </button>
-
-
-        </form>
+        <button class="submit-btn" id="submitBtn" type="submit">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/login-signup.js') }}"></script>
-</body>
-
+  </body>
 </html>
