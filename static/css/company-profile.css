@@ -6,6 +6,13 @@
   text-align: left;
 }
 
+.topDiv a {
+  color: #333333 !important;
+}
+.recharge-heading {
+  color: #333333;
+}
+
 .about-heading {
   display: flex;
   align-items: center;
