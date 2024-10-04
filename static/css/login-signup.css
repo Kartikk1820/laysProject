@@ -1,6 +1,6 @@
 /* Top section with background image */
 .top-section {
-  background-image: url("../../static/image/loginbg.jpg");
+  background-image: url("../../static/image/Nestle_logo.webp");
   background-size: cover;
   background-position: center;
   height: 50vh;
@@ -136,4 +136,11 @@
 .input-group > .form-floating,
 .input-group > .form-select {
   width: 100%;
+}
+
+@media screen and (min-width: 1500px) {
+  .top-section {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }
