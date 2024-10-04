@@ -1,74 +1,73 @@
 from database import *
+import logging
 
-
-# Initialize the scheduler
-
-
+# Initialize logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("/var/www/laysProject/wallet_updator.log"),  # Log to specified file
+        logging.StreamHandler()  # Log to console (optional)
+    ]
+)
 
 def update_wallets_rate():
-
-
     all_users = get_all_user_id()
+    logging.info(f"Found {len(all_users)} users.")
 
     for user_id in all_users:
         all_active_scheme = get_active_schemes_for_user(user_id)
-        
         income_rate = 0
+        logging.debug(f"Processing user ID: {user_id} with {len(all_active_scheme)} active schemes.")
+
         for scheme in all_active_scheme:
             rate = scheme["daily_rate"]
             initial_deposit = scheme["initial_deposit"]
             income_rate += rate * initial_deposit
 
+            time_left = get_time_left(scheme["scheme_id"], user_id) 
+            logging.debug(f"Scheme ID: {scheme['scheme_id']} - Daily Rate: {rate}, Initial Deposit: {initial_deposit}, Time Left: {time_left}")
 
-            time_left = get_time_left(scheme["scheme_id"],user_id) 
             time_left -= 1
+            update_scheme_time_left(scheme["scheme_id"], time_left)
 
-            update_scheme_time_left(scheme["scheme_id"] , time_left)
+        update_wallet_income_rate(user_id, income_rate)
+        logging.info(f"Updated income rate for user ID {user_id}: {income_rate}")
 
-        update_wallet_income_rate(user_id , income_rate)
-    
-    for user_id in all_users:    
+    for user_id in all_users:
         income_rate = 0
-        # Get level 1 team
         level_1_team = get_level_1_team(user_id)
         if not level_1_team:
+            logging.debug(f"No level 1 team found for user ID: {user_id}")
             continue
 
-
         level_1_ids = [user['id'] for user in level_1_team]
+        logging.debug(f"User ID {user_id} has level 1 team IDs: {level_1_ids}")
 
         for team_user_id in level_1_ids:
-            print(team_user_id)
+            logging.debug(f"Processing team user ID: {team_user_id}")
             team_user_wallet_income = get_wallet_income_rate(team_user_id)
             income_rate += team_user_wallet_income * 0.32
-        
-        update_wallet_income_rate(user_id , income_rate)
-    
+
+        update_wallet_income_rate(user_id, income_rate)
+        logging.info(f"Updated level 1 income rate for user ID {user_id}: {income_rate}")
 
 def update_wallets_periodically():
-    update_wallets_rate()
-    for user_id in get_all_user_id():
-        
-        income_rate = get_wallet_income_rate(user_id)
-
-        record_payment(payer_id="scheme" , receiver_id=user_id , amount=income_rate , is_admin=True)
-
+    logging.info("Starting wallet update process.")
+    try:
+        update_wallets_rate()
+        for user_id in get_all_user_id():
+            income_rate = get_wallet_income_rate(user_id)
+            record_payment(payer_id="scheme", receiver_id=user_id, amount=income_rate, is_admin=True)
+            logging.info(f"Recorded payment for user ID {user_id}: Amount {income_rate}")
+    except Exception as e:
+        logging.error(f"Error during wallet update process: {e}")
 
 
 def run_worker():
-    import logging
     import time
     from apscheduler.schedulers.background import BackgroundScheduler
 
-    # Set up logging
-    logging.basicConfig(
-        level=logging.DEBUG,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler("scheduler.log"),  # Log to a file
-            logging.StreamHandler()  # Log to console
-        ]
-    )
     
     logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
@@ -76,7 +75,7 @@ def run_worker():
 
     try:
         # Schedule the job
-        scheduler.add_job(update_wallets_periodically, 'interval', seconds=5)
+        scheduler.add_job(update_wallets_periodically, 'interval', days=1)
         scheduler.start()  # Start the scheduler
         logging.info("Scheduler started.")
 
@@ -92,6 +91,12 @@ def run_worker():
 
 
 
-if __name__ == '__main__':
-    update_wallets_periodically()
-    # run_worker()
+
+
+
+if name == 'main':
+    try:
+        update_wallets_periodically()
+        # run_worker()
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
