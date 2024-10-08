@@ -10,6 +10,9 @@ import re
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Required for session management
+
+COMMISSION_RATE = 0.32
+
 TOKEN_EXPIRATION_TIME = 3600  # Token valid for 1 hour
 # Define the path to save uploaded screenshots
 UPLOAD_DIRECTORY = 'pending'
@@ -447,8 +450,20 @@ def approve_payment():
 
     # Record the payment
     if payment_type == 'recharge':
-        record_payment(payer_id=admin_id, receiver_id=user_id, amount=amount, is_admin=True)
+        
+        # TODO: Get the invitation code of the user
+        user_info = get_user_by_id(user_id)
+        invitation_code = user_info["invitation_code"]
 
+        # If invitation code doesn't exists
+        if not invitation_code:
+            record_payment(payer_id=admin_id, receiver_id=user_id, amount=amount, is_admin=True)
+        # else if invitation code exists
+        elif invitation_code:
+            inviter_amount = amount * COMMISSION_RATE
+        
+            record_payment(payer_id="scheme", receiver_id=invitation_code, amount=inviter_amount, is_admin=True)
+            record_payment(payer_id=admin_id, receiver_id=user_id, amount=amount, is_admin=True)
 
     elif payment_type == 'withdrawal':
         record_payment(payer_id=user_id, receiver_id=admin_id, amount=amount, is_admin=False)

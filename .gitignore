@@ -1,0 +1,53 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+ENV/
+*.egg-info/
+
+# VS Code settings
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+egg-info/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg
+
+# Test and coverage
+*.cover
+.cover/
+nosetests.xml
+coverage.xml
+*.log
+
+# Other files
+*.DS_Store
+*.sqlite3
+*.db
+
+# Pytest
+.cache
+
+# Ignore Flask session files
+instance/*.py
+*.session
+flask_session
+
+# Ignore all files in static/pending
+static/pending/*

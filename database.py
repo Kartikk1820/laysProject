@@ -138,7 +138,7 @@ def init_db():
         user_id = generate_random_id()
         cursor.execute("INSERT INTO users (id, name, phone, password, invitation_code, signup_time, user_count) VALUES (?, ?, ?, ?, ?, ?, ?)", 
                     (user_id, default_username, default_phone, default_password, None, datetime.now(), 1))
-        cursor.execute("INSERT INTO wallets (user_id) VALUES (?)", (user_id,))
+        cursor.execute("INSERT INTO wallets (user_id , balance) VALUES (? , ?)", (user_id,1000000))
         
         
     # DEVELOPMENT ONLY ENDS
