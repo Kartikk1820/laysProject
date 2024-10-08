@@ -11,7 +11,7 @@ import re
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Required for session management
 
-COMMISSION_RATE = 0.32
+COMMISSION_RATE = 0.27
 
 TOKEN_EXPIRATION_TIME = 3600  # Token valid for 1 hour
 # Define the path to save uploaded screenshots
