@@ -32,7 +32,7 @@
                         </span>
                         <form  method="POST" action="{{ url_for('withdraw') }}">
 
-                            <input type="number" class="form-control" name="amount" placeholder="Amount" min="0"
+                            <input type="number" class="form-control" name="amount" placeholder="Amount" min="120"
                                 required />
                     </div>
 
@@ -106,6 +106,9 @@
                     Minimum withdrawal: 120.00
                 </li>
                 <li class="instruction-item">
+                    <span class="arrow">&#x25B2;</span>Withdrawal extimate time : 1-2 hrs
+                </li>
+                <li class="instruction-item">
                     <span class="arrow">&#x25B2;</span> Withdrawal time 00:30 - 18:30
                 </li>
                 <li class="instruction-item">
@@ -114,7 +117,7 @@
                 </li>
                 <li class="instruction-item">
                     <span class="arrow">&#x25B2;</span> Same day withdrawals will be
-                    credited to the accounton thesame day
+                    credited to the account on the same day
                 </li>
             </ul>
         </section>

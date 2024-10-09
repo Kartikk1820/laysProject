@@ -282,7 +282,7 @@ def init_payment_history_table():
     conn.commit()
     conn.close()
 
-def record_payment(payer_id, receiver_id, amount, is_admin=False):
+def record_payment(payer_id, receiver_id, amount, is_admin=False , update_wallet:bool = True):
     payment_time = datetime.now()
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -292,6 +292,11 @@ def record_payment(payer_id, receiver_id, amount, is_admin=False):
         INSERT INTO payment_history (payer_id, receiver_id, payment_time, amount) 
         VALUES (?, ?, ?, ?) 
     ''', (payer_id, receiver_id, payment_time, amount))
+
+    if not update_wallet:
+        conn.commit()
+        conn.close()
+        return
 
     if is_admin:
         # Update the central pool balance (when an admin is the payer)
@@ -601,7 +606,13 @@ def get_user_subscribed_schemes(user_id):
 def get_pending_payments():
     with get_db_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM pending_payments")  # Update query as needed
+        cursor.execute("SELECT * FROM pending_payments ORDER BY id DESC")
+        return cursor.fetchall()
+
+def get_pending_payments_by_user(user_id):
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM pending_payments WHERE user_id = ? AND pending = 1 ORDER BY id DESC", (user_id,))
         return cursor.fetchall()
 
 

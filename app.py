@@ -11,7 +11,7 @@ import re
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Required for session management
 
-COMMISSION_RATE = 0.32
+COMMISSION_RATE = 0.27
 
 TOKEN_EXPIRATION_TIME = 3600  # Token valid for 1 hour
 # Define the path to save uploaded screenshots
@@ -165,7 +165,7 @@ def signup():
         existing_user = get_user_by_identifier(name) or get_user_by_identifier(phone)
 
         if existing_user:
-            # TODO: convert these into messages which can be shown on the signup page
+            #  convert these into messages which can be shown on the signup page
             print("Credentials already exist please use different ones")
             msg = "Credentials already exist please use different ones"
             return render_template('signup.html', message=msg)
@@ -206,8 +206,9 @@ def payment_history():
     withdrawal_history = get_withdrawal_history(user_id)  # Fetch user's withdrawal history
     income_history = get_income_history(user_id)  # Fetch user's income history
     recharge_history = get_recharge_history(user_id)  # Fetch user's recharge history
+    pending_history = get_pending_payments_by_user(user_id)
 
-    return render_template('payment_history.html', payments=payment_history , withdrawals=withdrawal_history, income=income_history, recharge=recharge_history)
+    return render_template('payment_history.html', payments=payment_history , withdrawals=withdrawal_history, income=income_history, recharge=recharge_history , pending = pending_history)
 
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
@@ -447,12 +448,12 @@ def approve_payment():
     user_id = request.form['user_id']
     amount = float(request.form['amount'])
     payment_type = request.form['type']
+    user_info = get_user_by_id(user_id)
 
     # Record the payment
     if payment_type == 'recharge':
         
-        # TODO: Get the invitation code of the user
-        user_info = get_user_by_id(user_id)
+        # Get the invitation code of the user
         invitation_code = user_info["invitation_code"]
 
         # If invitation code doesn't exists
@@ -466,11 +467,23 @@ def approve_payment():
             record_payment(payer_id=admin_id, receiver_id=user_id, amount=amount, is_admin=True)
 
     elif payment_type == 'withdrawal':
-        record_payment(payer_id=user_id, receiver_id=admin_id, amount=amount, is_admin=False)
 
+        user_balance = get_wallet_by_user_id(user_id)
+        # if amount > user_balance:
+        #     # # Delete the invalid withdraw request
+        #     # with get_db_connection() as conn:
+        #     #     cursor = conn.cursor()
+        #     #     cursor.execute("DELETE FROM pending_payments WHERE id = ?", (payment_id,))
+        #     #     conn.commit()
+
+        #     return redirect(url_for('admin_pending_payments'))
+        
+        # else:
+        record_payment(payer_id=user_id, receiver_id=admin_id, amount=amount, is_admin=False , update_wallet=False)
+        # pass
 
     else:
-        redirect(url_for('admin_pending_payments'))
+        return redirect(url_for('admin_pending_payments'))
 
     
     # Update the pending payment entry
@@ -512,10 +525,20 @@ def withdraw():
 
             # Process the withdrawal here (e.g., update the wallet balance)
             # Add an entry in the pending payments table
+            # Update payer's wallet balance (deduct the amount)
+            with get_db_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(''' 
+                    UPDATE wallets 
+                    SET balance = balance - ? 
+                    WHERE user_id = ? 
+                ''', (amount, user_id))
+                conn.commit()
+
             add_pending_payment(user_id=user_id, amount=amount, screenshot_path=None , payment_type='withdrawal')
 
             
-            flash("Withdrawal successful!", "success")
+            print("Withdrawal successful!", "success")
             return redirect(url_for('profile'))
 
         except ValueError:

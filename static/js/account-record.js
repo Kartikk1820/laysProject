@@ -3,17 +3,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const allTypesBtn = document.getElementById("allTypesBtn");
   const withdrawalsBtn = document.getElementById("withdrawalsBtn");
   const rechargeBtn = document.getElementById("rechargeBtn");
+  const pendingBtn = document.getElementById("pendingBtn");
 
   // Get all the record containers
   const incomeRecords = document.querySelectorAll(".incomeRecord");
   const withdrawalRecords = document.querySelectorAll(".withdrawalRecord");
   const rechargeRecords = document.querySelectorAll(".rechargeRecord");
+  const pendingRecords = document.querySelectorAll(".pendingRecord"); // New pending records
 
   // Function to remove 'active' class from all buttons
   function clearActiveClass() {
     allTypesBtn.classList.remove("active");
     withdrawalsBtn.classList.remove("active");
     rechargeBtn.classList.remove("active");
+    pendingBtn.classList.remove("active"); // Clear active state for pending button
   }
 
   // Helper function to toggle visibility of multiple elements
@@ -28,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleDisplay(incomeRecords, "flex");
     toggleDisplay(withdrawalRecords, "flex");
     toggleDisplay(rechargeRecords, "flex");
+    toggleDisplay(pendingRecords, "flex"); // Show pending records too
     clearActiveClass();
     allTypesBtn.classList.add("active");
   });
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleDisplay(incomeRecords, "none");
     toggleDisplay(withdrawalRecords, "flex");
     toggleDisplay(rechargeRecords, "none");
+    toggleDisplay(pendingRecords, "none"); // Hide pending records
     clearActiveClass();
     withdrawalsBtn.classList.add("active");
   });
@@ -46,12 +51,24 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleDisplay(incomeRecords, "none");
     toggleDisplay(withdrawalRecords, "none");
     toggleDisplay(rechargeRecords, "flex");
+    toggleDisplay(pendingRecords, "none"); // Hide pending records
     clearActiveClass();
     rechargeBtn.classList.add("active");
+  });
+
+  // Show only pending records
+  pendingBtn.addEventListener("click", function () {
+    toggleDisplay(incomeRecords, "none");
+    toggleDisplay(withdrawalRecords, "none");
+    toggleDisplay(rechargeRecords, "none");
+    toggleDisplay(pendingRecords, "flex"); // Show pending records
+    clearActiveClass();
+    pendingBtn.classList.add("active");
   });
 
   // Show all types by default (without clicking)
   toggleDisplay(incomeRecords, "flex");
   toggleDisplay(withdrawalRecords, "flex");
   toggleDisplay(rechargeRecords, "flex");
+  toggleDisplay(pendingRecords, "flex"); // Show pending records by default too
 });
